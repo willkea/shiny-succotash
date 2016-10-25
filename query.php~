@@ -1,0 +1,19 @@
+<!DOCTYPE HTML>
+<html>
+<body>
+<h1>Movie Database</h1>
+
+Type an SQL query in the following box: <br><br>
+Example: SELECT * FROM Actor WHERE id=10; <br><br>
+    
+<textarea name="user_query" rows="8" cols="64"><?php echo $user_query;?></textarea>    
+    
+    
+    
+    
+    
+    
+    
+    
+</body>
+</html>
