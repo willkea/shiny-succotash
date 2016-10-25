@@ -53,7 +53,25 @@
   <button type="submit" class="btn btn-default">Submit</button>
 </form>
     
+<?php
+    //echo "selected movie: ". $_POST["title"] . "<br>"; 
+    //echo "selected director: ". $_POST["director"] . "<br>";
+    $newName = $_POST["r_name"];
+    $newTitle = $_POST["r_title"];
+    $newRating = $_POST["r_rating"];
+    $newComment = $_POST["r_comment"];
     
+    $mid_query = "SELECT id FROM Movie WHERE title='". $newTitle. "'";
+    $mid = mysqli_query($db, $mid_query);
+    $row = mysqli_fetch_row($mid);
+    
+    $insert_query = "INSERT INTO Review(name,time,mid,rating,comment) VALUES ('$newName', NOW(), '$row[0]', '$newRating','$newComment')";
+    
+    if ( $db->query($insert_query) === TRUE ){
+        echo "<br>"."New record created successfully";
+    } 
+    $db->close();
+?>    
     
 </div>
 
