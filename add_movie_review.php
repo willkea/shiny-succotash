@@ -6,36 +6,38 @@
                     <h1 class="page-header">New Movie Review</h1>
                 </div>
             </div>  
+<?php
+    $db = new mysqli('localhost', 'cs143', '', 'CS143');
+    $user_query = "SELECT title FROM Movie;";
+    $result = $db->query($user_query); 
+?>
     
-<form>
+<form method="post">
   <div class="form-group">
     <label for="r_name">Your Name:</label>
-    <input type="text" class="form-control" id="r_name" placeholder="Enter Your Name...">
+    <input type="text" class="form-control" name="r_name" placeholder="Enter Your Name...">
   </div>
     
-<?php
-
-$db = new mysqli('localhost', 'cs143', '', 'CS143');
-
-$user_query = "SELECT title FROM Movie;";
-$result = $db->query($user_query);
-
-echo "<div class=\"form-group\"><label>Movie Title: </label><select name='title' class=\"form-control\">";
-while($row = mysqli_fetch_row($result))
-    {
-        echo "<option>";
-        // $row is array... foreach( .. ) puts every element
-        // of $row to $cell variable
-        foreach($row as $cell)
-            echo "$cell";
-        echo "</option>";
-    }
-echo "</select></div>";
-?>
+ <div class="form-group">
+        <label>Movie Title: </label>
+        <select name="r_title" class="form-control">";
+            <?php
+            echo "<option disabled selected>Select a movie...</option>";
+            while($row = mysqli_fetch_row($result))
+            {
+            echo "<option>";
+            // $row is array... foreach( .. ) puts every element
+            // of $row to $cell variable
+            foreach($row as $cell)
+                echo "$cell";
+            echo "</option>";
+            } ?>
+        </select>
+    </div>
  
     <div class="form-group">
         <label>Rating: </label>
-        <select name='title' class="form-control">
+        <select name='r_rating' class="form-control">
             <option>1</option>
             <option>2</option>
             <option>3</option>
@@ -45,10 +47,31 @@ echo "</select></div>";
     
     <div class="form-group">
         <label>Comments: </label>
-        <textarea class="form-control" rows="3"></textarea>
+        <textarea class="form-control" name='r_comment' rows="3"></textarea>
     </div>
     
   <button type="submit" class="btn btn-default">Submit</button>
 </form>
     
+    
+    
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

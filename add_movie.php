@@ -10,22 +10,22 @@
 <form>
   <div class="form-group">
     <label for="m_title">Title:</label>
-    <input type="text" class="form-control" id="m_title" placeholder="Enter Movie Title...">
+    <input type="text" class="form-control" name="m_title" placeholder="Enter Movie Title...">
   </div>
     
   <div class="form-group">
     <label for="m_company">Company:</label>
-    <input type="text" class="form-control" id="m_company" placeholder="Enter Company Name...">
+    <input type="text" class="form-control" name="m_company" placeholder="Enter Company Name...">
   </div>
     
     <div class="form-group">
     <label for="m_year">Release Year: i.e. 2016</label>
-    <input type="text" class="form-control" id="m_year" placeholder="2016">
+    <input type="text" class="form-control" name="m_year" placeholder="2016">
   </div>
     
     <div class="form-group">
-        <label>Movie Title: </label>
-        <select name='title' class="form-control">
+        <label>MPAA Rating: </label>
+        <select name='m_rating' class="form-control">
             <option>G</option>
             <option>PG</option>
             <option>PG-13</option>

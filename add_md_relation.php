@@ -58,22 +58,20 @@
 </form>
     
 <?php
-    echo "selected movie: ". $_POST["title"] . "<br>"; 
-    echo "selected director: ". $_POST["director"] . "<br>";
+    //echo "selected movie: ". $_POST["title"] . "<br>"; 
+    //echo "selected director: ". $_POST["director"] . "<br>";
     $newTitle = $_POST["title"];
     $newDirector = $_POST["director"];
     $mid_query = "SELECT id FROM Movie WHERE title='". $newTitle. "'";
     $did_query = "SELECT id FROM Director WHERE CONCAT(first,' ',last)='". $newDirector. "'";
     $mid = mysqli_query($db, $mid_query);
-    
-    $did = $db->query($did_query); 
-    echo $did;
-    $insert_query = "INSERT INTO MovieDirector(mid,did) VALUES('".$mid."', '".$did."')";
+    $did = mysqli_query($db, $did_query);
+    $row = mysqli_fetch_row($mid);
+    $row2 = mysqli_fetch_row($did);
+    $insert_query = "INSERT INTO MovieDirector(mid,did) VALUES('".$row[0]."', '".$row2[0]."')";
     if ( $db->query($insert_query) === TRUE ){
-        echo "New record created successfuly";
-    } else {
-        echo "Error: " . $insert_query . "<br>" . $db->error;
-    }
+        echo "<br>"."New record created successfully";
+    } 
     $db->close();
 ?>
     
