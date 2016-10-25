@@ -12,9 +12,11 @@
 $db = new mysqli('localhost', 'cs143', '', 'CS143');
 
 $user_query = "SELECT title FROM Movie;";
-$result = $db->query($user_query);
+$result = $db->query($user_query); 
 
-echo "<div class=\"form-group\"><label>Movie Title: </label><select name='title' class=\"form-control\">";
+echo "<div class=\"form-group\">
+    <label>Movie Title: </label>
+    <select name=\"title\" class=\"form-control\">";
 while($row = mysqli_fetch_row($result))
     {
         echo "<option>";
@@ -47,5 +49,9 @@ echo "</select></div>";
 <form>
   <button type="submit" class="btn btn-default">Submit</button>
 </form>
+    
+<?php
+  echo "selected movie: ". $_POST["title"];
+?>
     
 </div>

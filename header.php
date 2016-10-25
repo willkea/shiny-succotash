@@ -306,7 +306,7 @@
                                     <a href="add_movie.php">New Movie</a>
                                 </li>
                                 <li>
-                                    <a href="#">Movie Review</a>
+                                    <a href="add_movie_review.php">Movie Review</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
