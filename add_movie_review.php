@@ -50,10 +50,11 @@
         <textarea class="form-control" name='r_comment' rows="3"></textarea>
     </div>
     
-  <button type="submit" class="btn btn-default">Submit</button>
+  <button type="submit" name="submit" class="btn btn-default">Submit</button>
 </form>
     
 <?php
+     if(isset($_POST['submit'])){
     //echo "selected movie: ". $_POST["title"] . "<br>"; 
     //echo "selected director: ". $_POST["director"] . "<br>";
     $newName = $_POST["r_name"];
@@ -62,6 +63,7 @@
     $newComment = $_POST["r_comment"];
     
     $mid_query = "SELECT id FROM Movie WHERE title='". $newTitle. "'";
+         
     $mid = mysqli_query($db, $mid_query);
     $row = mysqli_fetch_row($mid);
     
@@ -69,7 +71,9 @@
     
     if ( $db->query($insert_query) === TRUE ){
         echo "<br>"."New record created successfully";
-    } 
+    } else
+        echo "something is wrong";
+    }
     $db->close();
 ?>    
     

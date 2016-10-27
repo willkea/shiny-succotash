@@ -64,11 +64,12 @@
       <label><input type="checkbox" name="formDoor[]" value="War">War&emsp;</label>
     </div>
 <br>
-  <button type="submit" class="btn btn-default">Submit</button>
+  <button type="submit" name="submit" class="btn btn-default">Submit</button>
     
 </form>
     
 <?php
+     if(isset($_POST['submit'])){
     $db = new mysqli('localhost', 'cs143', '', 'CS143'); 
     
     $newTitle = $_POST["m_title"];
@@ -80,13 +81,23 @@
     $mid_query = "SELECT id FROM MaxMovieID";
     $mid = mysqli_query($db, $mid_query);
     $row = mysqli_fetch_row($mid);
-    $insert_query = "INSERT INTO Movie(id,title,year,rating,company) VALUES('$row[0]', '$newTitle', '$newYear', '$newRating','$newCompany')";
+    $val = $row[0];
+    $insert_query = "INSERT INTO Movie(id,title,year,rating,company) VALUES('$val', '$newTitle', '$newYear', '$newRating','$newCompany')";
+    
+        for($i=0; $i < $N; $i++){
+            echo $val;
+            $ins_query = "INSERT INTO MovieGenre(mid,genre) VALUES('$val', '$aDoor[$i]')";
+            echo $ins_query;
+            $db->query($ins_query);
+        }
+    
     
     if ( $db->query($insert_query) === TRUE ){
         $update_query = "UPDATE MaxMovieID SET id=id+1";
         $db->query($update_query);
         echo "<br>"."New record created successfully";
     } 
+    }
     $db->close();
 ?>
     

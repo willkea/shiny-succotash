@@ -54,10 +54,11 @@
     </select>
 </div>
 
-    <button type="submit" class="btn btn-default">Submit</button>
+    <button type="submit" name="submit" class="btn btn-default">Submit</button>
 </form>
     
 <?php
+     if(isset($_POST['submit'])){
     //echo "selected movie: ". $_POST["title"] . "<br>"; 
     //echo "selected director: ". $_POST["director"] . "<br>";
     $newTitle = $_POST["title"];
@@ -72,6 +73,7 @@
     if ( $db->query($insert_query) === TRUE ){
         echo "<br>"."New record created successfully";
     } 
+    }
     $db->close();
 ?>
     
