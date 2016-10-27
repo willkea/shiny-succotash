@@ -61,10 +61,15 @@ if(isset($_POST["submit"])){
     $row = mysqli_fetch_row($pid);
     $val = $row[0];
     
+    if ($newDOD == NULL) {
+    $insert_query = "INSERT INTO Actor(id,last,first,sex,dob,dod) VALUES('$val', '$newLast', '$newFirst', '$newGender', '$newDOB', NULL)";
     
-    $insert_query = "INSERT INTO Actor(id,last,first,sex,dob,dod) VALUES('$val', '$newLast', '$newFirst', '$newGender', '$newDOB', '$newDOD')";
+    $insert_query_dir = "INSERT INTO Director(id,last,first,dob,dod) VALUES('$val', '$newLast', '$newFirst', '$newDOB', NULL)";
+    } else {
+        $insert_query = "INSERT INTO Actor(id,last,first,sex,dob,dod) VALUES('$val', '$newLast', '$newFirst', '$newGender', '$newDOB', '$newDOD')";
     
-    $insert_query_dir = "INSERT INTO Director(id,last,first,dob,dod) VALUES('$val', '$newLast', '$newFirst', '$newDOB', '$newDOD')";
+        $insert_query_dir = "INSERT INTO Director(id,last,first,dob,dod) VALUES('$val', '$newLast', '$newFirst', '$newDOB', '$newDOD')";
+    }
     
   if ($newTitle == "Actor"){  
     if ( $db->query($insert_query) === TRUE ){
