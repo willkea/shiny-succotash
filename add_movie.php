@@ -69,7 +69,7 @@
 </form>
     
 <?php
-     if(isset($_POST['submit'])){
+if(isset($_POST['submit'])){
     $db = new mysqli('localhost', 'cs143', '', 'CS143'); 
     
     $newTitle = $_POST["m_title"];
@@ -84,20 +84,16 @@
     $val = $row[0];
     $insert_query = "INSERT INTO Movie(id,title,year,rating,company) VALUES('$val', '$newTitle', '$newYear', '$newRating','$newCompany')";
     
+    if ( $db->query($insert_query) === TRUE ){
         for($i=0; $i < $N; $i++){
-            echo $val;
             $ins_query = "INSERT INTO MovieGenre(mid,genre) VALUES('$val', '$aDoor[$i]')";
-            echo $ins_query;
             $db->query($ins_query);
         }
-    
-    
-    if ( $db->query($insert_query) === TRUE ){
         $update_query = "UPDATE MaxMovieID SET id=id+1";
         $db->query($update_query);
         echo "<br>"."New record created successfully";
     } 
-    }
+}
     $db->close();
 ?>
     
