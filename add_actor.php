@@ -7,7 +7,7 @@
                 </div>
             </div>  
     
-<form>
+<form method="post">
   <div class="form-group">
     <label for="firstName">First Name:</label>
     <input type="text" class="form-control" name="firstName" placeholder="Enter First Name...">
@@ -29,8 +29,8 @@
     
     <label>Gender: </label>
   <div class="checkbox">
-      <label class="radio-inline"><input type="radio" name="optradio">Male</label>
-      <label class="radio-inline"><input type="radio" name="optradio">Female</label>
+      <label class="radio-inline"><input type="radio" name="optradio" value="Male">Male</label>
+      <label class="radio-inline"><input type="radio" name="optradio" value="Female">Female</label>
     </div><br>
     
     <label>Title: </label>
@@ -60,20 +60,31 @@ if(isset($_POST["submit"])){
     $pid = mysqli_query($db, $pid_query);
     $row = mysqli_fetch_row($pid);
     $val = $row[0];
-    echo $newFirst;
-    echo $val;
-    echo $newTitle;
-    /*$insert_query = "INSERT INTO Movie(id,title,year,rating,company) VALUES('$val', '$newTitle', '$newYear', '$newRating','$newCompany')";
     
+    
+    $insert_query = "INSERT INTO Actor(id,last,first,sex,dob,dod) VALUES('$val', '$newLast', '$newFirst', '$newGender', '$newDOB', '$newDOD')";
+    
+    $insert_query_dir = "INSERT INTO Director(id,last,first,dob,dod) VALUES('$val', '$newLast', '$newFirst', '$newDOB', '$newDOD')";
+    
+  if ($newTitle == "Actor"){  
     if ( $db->query($insert_query) === TRUE ){
-        for($i=0; $i < $N; $i++){
-            $ins_query = "INSERT INTO MovieGenre(mid,genre) VALUES('$val', '$aDoor[$i]')";
-            $db->query($ins_query);
-        }
-        $update_query = "UPDATE MaxMovieID SET id=id+1";
+        $update_query = "UPDATE MaxPersonID SET id=id+1";
         $db->query($update_query);
         echo "<br>"."New record created successfully";
-    } */
+    }
+  } elseif ($newTitle == "Director"){
+    if ( $db->query($insert_query_dir) === TRUE ){
+        $update_query = "UPDATE MaxPersonID SET id=id+1";
+        $db->query($update_query);
+        echo "<br>"."New record created successfully";      
+    }
+  } else {
+    if ( $db->query($insert_query) === TRUE && $db->query($insert_query_dir) === TRUE){
+        $update_query = "UPDATE MaxPersonID SET id=id+1";
+        $db->query($update_query);
+        echo "<br>"."New records created successfully";   
+  }
+}
 }
     $db->close();
 ?>
