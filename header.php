@@ -291,10 +291,7 @@
                             <a href="#"><i class="fa fa-user fa-fw"></i> Add Person Information<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="add_actor.php">Actor</a>
-                                </li>
-                                <li>
-                                    <a href="add_director.php">Director</a>
+                                    <a href="add_actor.php">Actor/Director</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->

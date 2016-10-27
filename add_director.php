@@ -35,7 +35,6 @@
     $newLastName = $_POST['d_l_name'];
     $newDOB = $_POST['dob'];
     $newDOD = $_POST['dod'];
-    $getNewID_query = "SELECT * FROM MaxPersonID"
     
 ?>
     

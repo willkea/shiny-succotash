@@ -52,7 +52,7 @@
         echo "</option>";
         } ?>
     </select>
-</div>
+</div><br>
 
     <button type="submit" name="submit" class="btn btn-default">Submit</button>
 </form>

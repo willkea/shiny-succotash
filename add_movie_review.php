@@ -48,7 +48,7 @@
     <div class="form-group">
         <label>Comments: </label>
         <textarea class="form-control" name='r_comment' rows="3"></textarea>
-    </div>
+    </div><br>
     
   <button type="submit" name="submit" class="btn btn-default">Submit</button>
 </form>

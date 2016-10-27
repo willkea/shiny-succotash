@@ -57,7 +57,7 @@
   <div class="form-group">
     <label for="role">Role:</label>
     <input type="text" class="form-control" name="role" placeholder="Enter Role...">
-  </div>
+  </div><br>
 
   <button type="submit" name="submit" class="btn btn-default">Submit</button>
 </form>

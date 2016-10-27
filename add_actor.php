@@ -3,37 +3,93 @@
 <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">New Actor</h1>
+                    <h1 class="page-header">New Actor/Director</h1>
                 </div>
             </div>  
     
 <form>
   <div class="form-group">
-    <label for="a_f_name">First Name:</label>
-    <input type="text" class="form-control" id="a_f_name" placeholder="Enter First Name...">
+    <label for="firstName">First Name:</label>
+    <input type="text" class="form-control" name="firstName" placeholder="Enter First Name...">
   </div>
     
   <div class="form-group">
-    <label for="a_l_name">Last Name:</label>
-    <input type="text" class="form-control" id="a_l_name" placeholder="Enter Last Name...">
+    <label for="lastName">Last Name:</label>
+    <input type="text" class="form-control" name="lastName" placeholder="Enter Last Name...">
   </div>
     
     <div class="form-group">
     <label for="dob">Date of Birth: i.e. 1960-09-09</label>
-    <input type="text" class="form-control" id="dob" placeholder="1960-09-09">
+    <input type="text" class="form-control" name="dob" placeholder="1960-09-09">
   </div>
     <div class="form-group">
     <label for="dod">Date of Death: i.e. 1960-09-09, leave blank if alive</label>
-    <input type="text" class="form-control" id="dod" placeholder="1960-09-09">
+    <input type="text" class="form-control" name="dod" placeholder="1960-09-09">
   </div>
     
+    <label>Gender: </label>
   <div class="checkbox">
-    <label class="radio-inline"><input type="radio" name="optradio">Male</label>
-<label class="radio-inline"><input type="radio" name="optradio">Female</label>
-  </div>
+      <label class="radio-inline"><input type="radio" name="optradio">Male</label>
+      <label class="radio-inline"><input type="radio" name="optradio">Female</label>
+    </div><br>
+    
+    <label>Title: </label>
+  <div class="checkbox">
+    <label class="radio-inline"><input type="radio" name="a_job" value='Actor'>Actor</label>
+    <label class="radio-inline"><input type="radio" name="a_job" value='Director'>Director</label>
+    <label class="radio-inline"><input type="radio" name="a_job" value='Both'>Both</label>
+  </div><br>
+    
+
+  <button type="submit" name="submit" class="btn btn-default">Submit</button>
+</form><br>
     
     
-  <button type="submit" class="btn btn-default">Submit</button>
-</form>
+<?php
+if(isset($_POST["submit"])){
+    $db = new mysqli('localhost', 'cs143', '', 'CS143'); 
+    
+    $newFirst = $_POST["firstName"];
+    $newLast = $_POST["lastName"];
+    $newDOB = $_POST["dob"];
+    $newDOD = $_POST["dod"];
+    $newGender = $_POST["optradio"];
+    $newTitle = $_POST["a_job"];
+
+    $pid_query = "SELECT id FROM MaxPersonID";
+    $pid = mysqli_query($db, $pid_query);
+    $row = mysqli_fetch_row($pid);
+    $val = $row[0];
+    echo $newFirst;
+    echo $val;
+    echo $newTitle;
+    /*$insert_query = "INSERT INTO Movie(id,title,year,rating,company) VALUES('$val', '$newTitle', '$newYear', '$newRating','$newCompany')";
+    
+    if ( $db->query($insert_query) === TRUE ){
+        for($i=0; $i < $N; $i++){
+            $ins_query = "INSERT INTO MovieGenre(mid,genre) VALUES('$val', '$aDoor[$i]')";
+            $db->query($ins_query);
+        }
+        $update_query = "UPDATE MaxMovieID SET id=id+1";
+        $db->query($update_query);
+        echo "<br>"."New record created successfully";
+    } */
+}
+    $db->close();
+?>
+    
+    
     
 </div>
+
+
+
+
+
+
+
+
+
+
+
+

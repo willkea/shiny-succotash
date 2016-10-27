@@ -66,7 +66,7 @@
 <br>
   <button type="submit" name="submit" class="btn btn-default">Submit</button>
     
-</form>
+</form><br>
     
 <?php
 if(isset($_POST['submit'])){
