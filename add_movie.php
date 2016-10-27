@@ -77,20 +77,16 @@
     $newRating = $_POST["m_rating"];
     $aDoor = $_POST['formDoor'];
     $N = count($aDoor);
-    echo("You selected $N door(s): ");
-     for($i=0; $i < $N; $i++)
-    {
-      echo($aDoor[$i] . " ");}
-    //$mid_query = "SELECT id FROM Movie WHERE title='". $newTitle. "'";
-   
-    //$mid = mysqli_query($db, $mid_query);
-
-    //$row = mysqli_fetch_row($mid);
-    //$row2 = mysqli_fetch_row($did);
-    //$insert_query = "INSERT INTO MovieDirector(mid,did) VALUES('".$row[0]."', '".$row2[0]."')";
-    //if ( $db->query($insert_query) === TRUE ){
-        //echo "<br>"."New record created successfully";
-    //} 
+    $mid_query = "SELECT id FROM MaxMovieID";
+    $mid = mysqli_query($db, $mid_query);
+    $row = mysqli_fetch_row($mid);
+    $insert_query = "INSERT INTO Movie(id,title,year,rating,company) VALUES('$row[0]', '$newTitle', '$newYear', '$newRating','$newCompany')";
+    
+    if ( $db->query($insert_query) === TRUE ){
+        $update_query = "UPDATE MaxMovieID SET id=id+1";
+        $db->query($update_query);
+        echo "<br>"."New record created successfully";
+    } 
     $db->close();
 ?>
     
