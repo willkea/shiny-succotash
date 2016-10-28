@@ -13,9 +13,18 @@
 
     <!-- Bootstrap Core CSS -->
     <link href="./vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    
+     <!-- Morris Charts CSS -->
+    <link href="./vendor/morrisjs/morris.css" rel="stylesheet">
 
     <!-- MetisMenu CSS -->
     <link href="./vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
+    
+    <!-- DataTables CSS -->
+    <link href="./vendor/datatables-plugins/dataTables.bootstrap.css" rel="stylesheet">
+
+    <!-- DataTables Responsive CSS -->
+    <link href="./vendor/datatables-responsive/dataTables.responsive.css" rel="stylesheet">
 
     <!-- Custom CSS -->
     <link href="./dist/css/sb-admin-2.css" rel="stylesheet">
@@ -265,11 +274,11 @@
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
                         <li class="sidebar-search">
-                            <form method="post" action="search.php">
+                            <form method="get" action="search.php">
                             <div class="input-group custom-search-form">
-                                <input type="text" name="searchInput" class="form-control" placeholder="Search...">
+                                <input type="text" name="search" class="form-control" placeholder="Search...">
                                 <span class="input-group-btn">
-                                <button class="btn btn-default" type="submit">
+                                <button class="btn btn-default" type="submit" name="submit">
                                     <i class="fa fa-search"></i>
                                 </button>
                                 </span>
@@ -281,7 +290,7 @@
                             <a href="#"><i class="fa fa-globe fa-fw"></i> Browse<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="#">Actors</a>
+                                    <a href="show_actors.php">Actors</a>
                                 </li>
                                 <li>
                                     <a href="#">Movies</a>
@@ -336,6 +345,11 @@
 
     <!-- Metis Menu Plugin JavaScript -->
     <script src="./vendor/metisMenu/metisMenu.min.js"></script>
+    
+     <!-- DataTables JavaScript -->
+    <script src="./vendor/datatables/js/jquery.dataTables.min.js"></script>
+    <script src="./vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
+    <script src="./vendor/datatables-responsive/dataTables.responsive.js"></script>
 
 
     <!-- Custom Theme JavaScript -->
