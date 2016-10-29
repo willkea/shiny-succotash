@@ -47,13 +47,16 @@
          
          $genre_query = "SELECT genre from MovieGenre WHERE mid='$mid_val[0]'";
         
+         $actors_query = "SELECT concat(first,' ',last) AS `Actor Name`, role FROM Actor, MovieActor WHERE mid='$mid_val[0]' AND aid=id";
+         
          $result = mysqli_query($db, $mid_query); 
          $dir_result = mysqli_query($db, $dir_query);
          $dir = mysqli_fetch_row($dir_result)[0];
          $field_nums = mysqli_num_fields($result);
          
          $gen_result = mysqli_query($db,$genre_query);
-         
+         $actors = mysqli_query($db,$actors_query);
+         $field_nums_a = mysqli_num_fields($actors);
           //movie table   
     echo "<div class='panel panel-default'><div class='panel-heading'>Movie Information:</div><div class='panel-body'><div class='table-responsive'><table class='table table-striped table-bordered table-hover'><thead><tr>";
     // printing table headers
@@ -84,15 +87,63 @@
     $result->free();
          
          
-         
-         
-         
-         
-         
+       echo "<div class='panel panel-default'><div class='panel-heading'>Movie Cast Information:</div><div class='panel-body'><div class='table-responsive'><table class='table table-striped table-bordered table-hover'><thead><tr>";
+    // printing table headers
+    for($i=0; $i<$field_nums_a; $i++)
+    {
+        $field = $actors->fetch_field();
+        $fieldtitle = ucfirst($field->name);
+        echo "<th>$fieldtitle</th>";
+    }
+    echo "</thead><tbody>";
+    // printing table rows
+    while($row = mysqli_fetch_row($actors))
+    {
+        echo "<tr>";
+        // $row is array... foreach( .. ) puts every element
+        // of $row to $cell variable
+        foreach($row as $cell)
+            echo "<td>$cell</td>";
+        echo "</tr>\n";
+    }
+        echo "</tbody></table></div></div></div><br>";
+    $actors->free();   
+    
      }
     
 ?>
     
+     <div class="col-lg-12">
+        <h2 class="page-header">User Reviews</h2>
+    </div>
+    
+<?php
+    $rating_query = "SELECT rating, count(*) from Review where mid='$mid_val[0]'";
+    $rating = mysqli_query($db,$rating_query);
+    $ratingRow = mysqli_fetch_row($rating);
+    if($ratingRow[0] == NULL){
+        echo "<p>This movie has not been reviewed yet!</p>";
+    } else {
+        echo "<p>This movie received an average score of '$ratingRow[0]'/5 based on '$ratingRow[1]' reviews</p><br>";
+    }
+    $rating->free();
+    
+    $comment_query = "SELECT name, time, rating, comment from Review where mid='$mid_val[0]'";
+    $comment = mysqli_query($db,$comment_query);
+    $field_nums_c = mysqli_num_rows($comment);
+    
+    while($row = mysqli_fetch_row($comment))
+    {
+        echo "<div class='panel panel-info'>
+                <div class='panel-heading'>
+                            '$row[0]'
+                </div>
+                    <div class='panel-body'>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt est vitae ultrices accumsan. Aliquam ornare lacus adipiscing, posuere lectus et, fringilla augue.</p>
+                    </div>
+                </div>";
+    }    
+?>
 </div>
 
 
