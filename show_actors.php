@@ -38,7 +38,7 @@
          $newSearch = $_GET["actor"];
          $aid_query = "SELECT CONCAT(first,' ',last) Name, sex, dob AS DOB, dod AS DOD FROM Actor WHERE CONCAT(first,' ',last)='$newSearch'";
          
-         $roles_query = "SELECT mid, role FROM MovieActor,Actor WHERE CONCAT(first,' ',last)='$newSearch' AND id=aid";
+         $roles_query = "SELECT title AS `Movie Title`, role FROM MovieActor,Actor,Movie WHERE CONCAT(first,' ',last)='$newSearch' AND Actor.id=aid AND mid=Movie.id";
          
          $result = mysqli_query($db, $aid_query);
          $result2 = mysqli_query($db, $roles_query);

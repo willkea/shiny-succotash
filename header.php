@@ -293,7 +293,7 @@
                                     <a href="show_actors.php">Actors</a>
                                 </li>
                                 <li>
-                                    <a href="#">Movies</a>
+                                    <a href="show_movies.php">Movies</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
