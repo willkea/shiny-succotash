@@ -86,7 +86,7 @@
         echo "</tbody></table></div></div></div>";
     $result->free();
          
-         
+         //movie cast
        echo "<div class='panel panel-default'><div class='panel-heading'>Movie Cast Information:</div><div class='panel-body'><div class='table-responsive'><table class='table table-striped table-bordered table-hover'><thead><tr>";
     // printing table headers
     for($i=0; $i<$field_nums_a; $i++)
@@ -102,31 +102,33 @@
         echo "<tr>";
         // $row is array... foreach( .. ) puts every element
         // of $row to $cell variable
+        $actor_url = $row[0];
+        $actor_url_plus = str_replace(' ','+',$actor_url);
+        $link = "show_actors.php?actor=$actor_url_plus&submit=";
         foreach($row as $cell)
-            echo "<td>$cell</td>";
+            echo "<td><a href='$link'>$cell</a></td>";
         echo "</tr>\n";
     }
         echo "</tbody></table></div></div></div><br>";
     $actors->free();   
     
-     }
+
     
-?>
+     echo "<div class='col-lg-12'><h2 class='page-header'>User Reviews</h2></div>";
     
-     <div class="col-lg-12">
-        <h2 class="page-header">User Reviews</h2>
-    </div>
-    
-<?php
-    $rating_query = "SELECT rating, count(*) from Review where mid='$mid_val[0]'";
+
+    $rating_query = "SELECT avg(rating), count(*) from Review where mid='$mid_val[0]'";
     $rating = mysqli_query($db,$rating_query);
     $ratingRow = mysqli_fetch_row($rating);
     if($ratingRow[0] == NULL){
         echo "<p>This movie has not been reviewed yet!</p>";
     } else {
-        echo "<p>This movie received an average score of '$ratingRow[0]'/5 based on '$ratingRow[1]' reviews</p><br>";
+        $num = number_format($ratingRow[0],2);
+        echo "<p>This movie received an average score of $num/5.00 based on $ratingRow[1] reviews.</p>";
     }
     $rating->free();
+    
+    echo "<a href='#'>Leave your review here!</a><br><br>";
     
     $comment_query = "SELECT name, time, rating, comment from Review where mid='$mid_val[0]'";
     $comment = mysqli_query($db,$comment_query);
@@ -136,13 +138,14 @@
     {
         echo "<div class='panel panel-info'>
                 <div class='panel-heading'>
-                            '$row[0]'
+                            $row[0] ($row[1])
                 </div>
                     <div class='panel-body'>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt est vitae ultrices accumsan. Aliquam ornare lacus adipiscing, posuere lectus et, fringilla augue.</p>
+                            <p><strong>$row[2] </strong><i class='fa fa-star'></i>: $row[3]</p>
                     </div>
                 </div>";
-    }    
+    }   
+    }
 ?>
 </div>
 

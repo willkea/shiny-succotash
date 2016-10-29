@@ -12,7 +12,7 @@
     $result = $db->query($user_query); 
 ?>
     
-<form method="post">
+<form method="get">
   <div class="form-group">
     <label for="r_name">Your Name:</label>
     <input type="text" class="form-control" name="r_name" placeholder="Enter Your Name...">
@@ -54,13 +54,12 @@
 </form>
     
 <?php
-     if(isset($_POST['submit'])){
-    //echo "selected movie: ". $_POST["title"] . "<br>"; 
-    //echo "selected director: ". $_POST["director"] . "<br>";
-    $newName = $_POST["r_name"];
-    $newTitle = $_POST["r_title"];
-    $newRating = $_POST["r_rating"];
-    $newComment = $_POST["r_comment"];
+     if(isset($_GET['submit'])){
+    
+    $newName = $_GET["r_name"];
+    $newTitle = $_GET["r_title"];
+    $newRating = $_GET["r_rating"];
+    $newComment = $_GET["r_comment"];
     
     $mid_query = "SELECT id FROM Movie WHERE title='". $newTitle. "'";
          

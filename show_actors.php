@@ -45,7 +45,7 @@
          $field_nums = mysqli_num_fields($result);
          $field_nums2 = mysqli_num_fields($result2);
          
-              //movie table   
+              //actor info table   
     echo "<div class='panel panel-default'><div class='panel-heading'>Actor Information:</div><div class='panel-body'><div class='table-responsive'><table class='table table-striped table-bordered table-hover'><thead><tr>";
     // printing table headers
     for($i=0; $i<$field_nums; $i++)
@@ -84,8 +84,11 @@
         echo "<tr>";
         // $row is array... foreach( .. ) puts every element
         // of $row to $cell variable
+        $title_url = $row[0];
+        $title_url_plus = str_replace(' ','+',$title_url);
+        $link = "show_movies.php?movie=$title_url_plus&submit=";
         foreach($row as $cell)
-            echo "<td>$cell</td>";
+            echo "<td><a href='$link'>$cell</a></td>";
         echo "</tr>\n";
     }
         echo "</tbody></table></div></div></div>";
