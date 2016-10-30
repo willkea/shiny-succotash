@@ -128,7 +128,7 @@
     }
     $rating->free();
     
-    echo "<a href='#'>Leave your review here!</a><br><br>";
+    echo "<a href='add_movie_review.php'>Leave your review here!</a><br><br>";
     
     $comment_query = "SELECT name, time, rating, comment from Review where mid='$mid_val[0]'";
     $comment = mysqli_query($db,$comment_query);

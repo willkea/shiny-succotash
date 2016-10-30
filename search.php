@@ -39,7 +39,7 @@
     $aid_query = "SELECT CONCAT(first,' ',last) Name, dob AS DOB FROM Actor WHERE $full";//CONCAT(first,' ',last) LIKE '%$newSearch%'";
       
     $mid_query = "SELECT title,year FROM Movie WHERE $full_m";//title LIKE '%$newSearch%'";
-    echo $mid_query;   
+      
     $result = mysqli_query($db, $mid_query);
     $result2 = mysqli_query($db, $aid_query);
     //$row = mysqli_fetch_row($mid);
@@ -63,8 +63,11 @@
         echo "<tr>";
         // $row is array... foreach( .. ) puts every element
         // of $row to $cell variable
+        $actor_url = $row[0];
+        $actor_url_plus = str_replace(' ','+',$actor_url);
+        $link = "show_actors.php?actor=$actor_url_plus&submit=";
         foreach($row as $cell)
-            echo "<td>$cell</td>";
+            echo "<td><a href='$link'>$cell</a></td>";
         echo "</tr>\n";
     }
         echo "</tbody></table></div></div></div>";
@@ -86,8 +89,11 @@
         echo "<tr>";
         // $row is array... foreach( .. ) puts every element
         // of $row to $cell variable
+        $title_url = $row[0];
+        $title_url_plus = str_replace(' ','+',$title_url);
+        $link = "show_movies.php?movie=$title_url_plus&submit=";
         foreach($row as $cell)
-            echo "<td>$cell</td>";
+            echo "<td><a href='$link'>$cell</a></td>";
         echo "</tr>\n";
     }
         echo "</tbody></table></div></div></div>";
