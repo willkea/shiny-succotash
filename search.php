@@ -23,11 +23,23 @@
     //echo "selected movie: ". $_POST["title"] . "<br>"; 
     //echo "selected director: ". $_POST["director"] . "<br>";
     $newSearch = $_GET["search"];
-        
-    $aid_query = "SELECT CONCAT(first,' ',last) Name, dob AS DOB FROM Actor WHERE CONCAT(first,' ',last) LIKE '%$newSearch%'";
-        
-    $mid_query = "SELECT title,year FROM Movie WHERE title LIKE '%$newSearch%'";
-        
+    $pieces = explode(' ',$newSearch);
+    $full = "";
+    $full_m = "";
+    for($i=0;$i<count($pieces);$i++){
+        $x = "CONCAT(first,' ',last) LIKE '%$pieces[$i]%' AND ";
+        $full = $full . $x;
+    }
+    $full = substr($full,0,-5);
+    for($i=0;$i<count($pieces);$i++){
+        $x = "title LIKE '%$pieces[$i]%' AND ";
+        $full_m = $full_m . $x;
+    }
+    $full_m = substr($full_m,0,-5);
+    $aid_query = "SELECT CONCAT(first,' ',last) Name, dob AS DOB FROM Actor WHERE $full";//CONCAT(first,' ',last) LIKE '%$newSearch%'";
+      
+    $mid_query = "SELECT title,year FROM Movie WHERE $full_m";//title LIKE '%$newSearch%'";
+    echo $mid_query;   
     $result = mysqli_query($db, $mid_query);
     $result2 = mysqli_query($db, $aid_query);
     //$row = mysqli_fetch_row($mid);
