@@ -11,14 +11,26 @@
     $db = new mysqli('localhost', 'cs143', '', 'CS143');
     $user_query = "SELECT title FROM Movie;";
     $result = $db->query($user_query); 
+    $titleErr = $dirErr = "";
+         if(isset($_POST['submit'])){
+         if($_POST["title"] == "Select a movie..."){ 
+             $titleErr = "Must choose a movie";
+         } else {
+             $newTitle = $_POST["title"];
+         }
+         if($_POST["director"] == "Select a director..."){ 
+             $dirErr = "Must choose a director";
+         } else {
+             $newDirector = $_POST["director"];
+         } }
 ?>
     
 <form method="post">
     <div class="form-group">
         <label>Movie Title: </label>
-        <select name="title" class="form-control">";
+        <select name="title" class="form-control">
             <?php
-            echo "<option disabled selected>Select a movie...</option>";
+            echo "<option hidden>Select a movie...</option>";
             while($row = mysqli_fetch_row($result))
             {
             echo "<option>";
@@ -28,7 +40,7 @@
                 echo "$cell";
             echo "</option>";
             } ?>
-        </select>
+        </select><span class="error"><?php echo $titleErr;?></span>
     </div>
 
     
@@ -41,7 +53,7 @@
     <label>Director: </label>
     <select name="director" class="form-control">";
         <?php 
-        echo "<option disabled selected>Select a director...</option>";
+        echo "<option hidden>Select a director...</option>";
         while($row = mysqli_fetch_row($result))
         {
         echo "<option>";
@@ -51,18 +63,20 @@
             echo "$cell";
         echo "</option>";
         } ?>
-    </select>
+    </select><span class="error"><?php echo $dirErr;?></span>
 </div><br>
 
     <button type="submit" name="submit" class="btn btn-default">Submit</button>
 </form>
     
 <?php
-     if(isset($_POST['submit'])){
+    
+    
+
+         
     //echo "selected movie: ". $_POST["title"] . "<br>"; 
     //echo "selected director: ". $_POST["director"] . "<br>";
-    $newTitle = $_POST["title"];
-    $newDirector = $_POST["director"];
+    
     $mid_query = "SELECT id FROM Movie WHERE title='". $newTitle. "'";
     $did_query = "SELECT id FROM Director WHERE CONCAT(first,' ',last)='". $newDirector. "'";
     $mid = mysqli_query($db, $mid_query);
@@ -73,7 +87,7 @@
     if ( $db->query($insert_query) === TRUE ){
         echo "<br>"."New record created successfully";
     } 
-    }
+    
     $db->close();
 ?>
     

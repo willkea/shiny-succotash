@@ -71,7 +71,7 @@
 <?php
 if(isset($_POST['submit'])){
     $db = new mysqli('localhost', 'cs143', '', 'CS143'); 
-    
+    $titleErr = $comErr = $yearErr = $ratingErr = $genreErr = "";
     $newTitle = $_POST["m_title"];
     $newCompany = $_POST["m_company"];
     $newYear = $_POST["m_year"];
