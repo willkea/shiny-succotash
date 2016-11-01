@@ -43,17 +43,17 @@
 <form method="post">
   <div class="form-group">
     <label for="firstName">First Name:</label>
-    <input type="text" class="form-control" name="firstName" placeholder="Enter First Name..."><span class="error"><?php echo $fnErr;?></span>
+    <input type="text" class="form-control" name="firstName" placeholder="Enter First Name..."><span class="error" style="color:red"><?php echo $fnErr;?></span>
   </div>
     
   <div class="form-group">
     <label for="lastName">Last Name:</label>
-    <input type="text" class="form-control" name="lastName" placeholder="Enter Last Name..."><span class="error"><?php echo $lnErr;?></span>
+    <input type="text" class="form-control" name="lastName" placeholder="Enter Last Name..."><span class="error" style="color:red"><?php echo $lnErr;?></span>
   </div>
     
     <div class="form-group">
     <label for="dob">Date of Birth: i.e. 1960-09-09</label>
-    <input type="text" class="form-control" name="dob" placeholder="1960-09-09"><span class="error"><?php echo $dobErr;?></span>
+    <input type="text" class="form-control" name="dob" placeholder="1960-09-09"><span class="error" style="color:red"><?php echo $dobErr;?></span>
   </div>
     <div class="form-group">
     <label for="dod">Date of Death: i.e. 1960-09-09, leave blank if alive</label>
@@ -64,14 +64,14 @@
   <div class="checkbox">
       <label class="radio-inline"><input type="radio" name="optradio" value="Male">Male</label>
       <label class="radio-inline"><input type="radio" name="optradio" value="Female">Female</label>
-    </div><span class="error"><?php echo $genderErr;?></span><br>
+    </div><span class="error" style="color:red"><?php echo $genderErr;?></span><br>
     
     <label>Title: </label>
   <div class="checkbox">
     <label class="radio-inline"><input type="radio" name="a_job" value='Actor'>Actor</label>
     <label class="radio-inline"><input type="radio" name="a_job" value='Director'>Director</label>
     <label class="radio-inline"><input type="radio" name="a_job" value='Both'>Both</label>
-  </div><span class="error"><?php echo $titleErr;?></span><br>
+  </div><span class="error" style="color:red"><?php echo $titleErr;?></span><br>
     
 
   <button type="submit" name="submit" class="btn btn-default">Submit</button>

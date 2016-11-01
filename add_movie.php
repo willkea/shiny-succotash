@@ -41,17 +41,17 @@ if(isset($_POST['submit'])){
 <form method="post">
   <div class="form-group">
     <label for="m_title">Title:</label>
-    <input type="text" class="form-control" name="m_title" placeholder="Enter Movie Title..."><span class="error"><?php echo $titleErr;?></span>
+    <input type="text" class="form-control" name="m_title" placeholder="Enter Movie Title..."><span class="error" style="color:red"><?php echo $titleErr;?></span>
   </div>
     
   <div class="form-group">
     <label for="m_company">Company:</label>
-    <input type="text" class="form-control" name="m_company" placeholder="Enter Company Name..."><span class="error"><?php echo $comErr;?></span>
+    <input type="text" class="form-control" name="m_company" placeholder="Enter Company Name..."><span class="error" style="color:red"><?php echo $comErr;?></span>
   </div>
     
     <div class="form-group">
     <label for="m_year">Release Year: i.e. 2016</label>
-    <input type="text" class="form-control" name="m_year" placeholder="2016"><span class="error"><?php echo $yearErr;?></span>
+    <input type="text" class="form-control" name="m_year" placeholder="2016"><span class="error" style="color:red"><?php echo $yearErr;?></span>
   </div>
     
     <div class="form-group">
@@ -93,7 +93,7 @@ if(isset($_POST['submit'])){
       <label><input type="checkbox" name="formDoor[]" value="Romance">Romance&emsp;</label> 
       <label><input type="checkbox" name="formDoor[]" value="Documentary">Documentary&emsp;</label>
       <label><input type="checkbox" name="formDoor[]" value="War">War&emsp;</label>
-    </div><span class="error">
+    </div>
 <br>
   <button type="submit" name="submit" class="btn btn-default">Submit</button>
     

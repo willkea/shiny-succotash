@@ -40,7 +40,7 @@
                 echo "$cell";
             echo "</option>";
             } ?>
-        </select><span class="error"><?php echo $titleErr;?></span>
+        </select><span class="error" style="color:red"><?php echo $titleErr;?></span>
     </div>
 
     
@@ -63,7 +63,7 @@
             echo "$cell";
         echo "</option>";
         } ?>
-    </select><span class="error"><?php echo $dirErr;?></span>
+    </select><span class="error" style="color:red"><?php echo $dirErr;?></span>
 </div><br>
 
     <button type="submit" name="submit" class="btn btn-default">Submit</button>

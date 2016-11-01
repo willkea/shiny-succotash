@@ -32,7 +32,7 @@
 <form method="get">
   <div class="form-group">
     <label for="r_name">Your Name:</label>
-    <input type="text" class="form-control" name="r_name" placeholder="Enter Your Name..."><span class="error"><?php echo $nameErr;?></span>
+    <input type="text" class="form-control" name="r_name" placeholder="Enter Your Name..."><span class="error" style="color:red"><?php echo $nameErr;?></span>
   </div>
     
  <div class="form-group">
@@ -49,7 +49,7 @@
                 echo "$cell";
             echo "</option>";
             } ?>
-        </select><span class="error"><?php echo $titleErr;?></span>
+        </select><span class="error" style="color:red"><?php echo $titleErr;?></span>
     </div>
  
     <div class="form-group">
@@ -64,7 +64,7 @@
     
     <div class="form-group">
         <label>Comments: </label>
-        <textarea class="form-control" name='r_comment' rows="3"></textarea><span class="error"><?php echo $commentErr;?></span>
+        <textarea class="form-control" name='r_comment' rows="3"></textarea><span class="error" style="color:red"><?php echo $commentErr;?></span>
     </div><br>
     
   <button type="submit" name="submit" class="btn btn-default">Submit</button>
@@ -84,9 +84,7 @@
    
     if ( $db->query($insert_query) === TRUE ){
         echo "<br>"."New record created successfully";
-    } else
-        echo "something is wrong";
-    
+    } 
     $db->close();
 ?>    
     

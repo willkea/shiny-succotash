@@ -45,7 +45,7 @@
                 echo "$cell";
             echo "</option>";
             } ?>
-        </select><span class="error"><?php echo $titleErr;?></span>
+        </select><span class="error" style="color:red"><?php echo $titleErr;?></span>
     </div>
 
 
@@ -67,13 +67,13 @@
             echo "$cell";
         echo "</option>";
         } ?>
-    </select><span class="error"><?php echo $actErr;?></span>
+    </select><span class="error" style="color:red"><?php echo $actErr;?></span>
 </div>    
     
 
   <div class="form-group">
     <label for="role">Role:</label>
-    <input type="text" class="form-control" name="role" placeholder="Enter Role..."><span class="error"><?php echo $roleErr;?></span>
+    <input type="text" class="form-control" name="role" placeholder="Enter Role..."><span class="error" style="color:red"><?php echo $roleErr;?></span>
   </div><br>
 
   <button type="submit" name="submit" class="btn btn-default">Submit</button>
