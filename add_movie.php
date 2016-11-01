@@ -7,20 +7,51 @@
                 </div>
             </div>  
     
+<?php
+if(isset($_POST['submit'])){
+    $db = new mysqli('localhost', 'cs143', '', 'CS143'); 
+    $titleErr = $comErr = $yearErr = $ratingErr = $genreErr = "";
+    if(empty($_POST["m_title"])){ 
+             $titleErr = "Must choose a title";
+         } else {
+             $newTitle = "'".$_POST['m_title']."'";
+         }
+    if(empty($_POST["m_company"])){ 
+             $comErr = "Must choose a company";
+         } else {
+             $newCompany = "'".$_POST["m_company"]."'";
+         }
+    if(empty($_POST["m_year"])){ 
+             $yearErr = "Must choose a year";
+    } elseif ($_POST["m_year"] > 2500 || $_POST["m_year"] < 1800){
+             $yearErr = "Please input valid year";  
+    } else {
+             $newYear = "'".$_POST["m_year"]."'";
+    }
+    
+    $newRating = $_POST["m_rating"];
+    if (!isset($_POST['formDoor'])){
+        $genreErr = "Must choose a genre";
+    } else {
+        $aDoor = $_POST['formDoor'];
+    }
+}
+    ?>
+    
 <form method="post">
   <div class="form-group">
     <label for="m_title">Title:</label>
-    <input type="text" class="form-control" name="m_title" placeholder="Enter Movie Title...">
+    <input type="text" class="form-control" name="m_title" placeholder="Enter Movie Title..."><span class="error"><?php echo $titleErr;?></span>
   </div>
     
   <div class="form-group">
     <label for="m_company">Company:</label>
-    <input type="text" class="form-control" name="m_company" placeholder="Enter Company Name...">
+    <input type="text" class="form-control" name="m_company" placeholder="Enter Company Name..."><span class="error"><?php echo $comErr;?></span>
   </div>
     
     <div class="form-group">
     <label for="m_year">Release Year: i.e. 2016</label>
-    <input type="text" class="form-control" name="m_year" placeholder="2016">
+    <input type="text" class="form-control" name="m_year" placeholder="2016"><span class="error"><?php echo $yearErr;?></span>
   </div>
     
     <div class="form-group">
@@ -62,27 +93,21 @@
       <label><input type="checkbox" name="formDoor[]" value="Romance">Romance&emsp;</label> 
       <label><input type="checkbox" name="formDoor[]" value="Documentary">Documentary&emsp;</label>
       <label><input type="checkbox" name="formDoor[]" value="War">War&emsp;</label>
-    </div>
+    </div><span class="error">
 <br>
   <button type="submit" name="submit" class="btn btn-default">Submit</button>
     
 </form><br>
     
 <?php
-if(isset($_POST['submit'])){
-    $db = new mysqli('localhost', 'cs143', '', 'CS143'); 
-    $titleErr = $comErr = $yearErr = $ratingErr = $genreErr = "";
-    $newTitle = $_POST["m_title"];
-    $newCompany = $_POST["m_company"];
-    $newYear = $_POST["m_year"];
-    $newRating = $_POST["m_rating"];
-    $aDoor = $_POST['formDoor'];
+
+    
     $N = count($aDoor);
     $mid_query = "SELECT id FROM MaxMovieID";
     $mid = mysqli_query($db, $mid_query);
     $row = mysqli_fetch_row($mid);
     $val = $row[0];
-    $insert_query = "INSERT INTO Movie(id,title,year,rating,company) VALUES('$val', '$newTitle', '$newYear', '$newRating','$newCompany')";
+    $insert_query = "INSERT INTO Movie(id,title,year,rating,company) VALUES('$val', $newTitle, $newYear, '$newRating',$newCompany)";
     
     if ( $db->query($insert_query) === TRUE ){
         for($i=0; $i < $N; $i++){
@@ -93,7 +118,7 @@ if(isset($_POST['submit'])){
         $db->query($update_query);
         echo "<br>"."New record created successfully";
     } 
-}
+
     $db->close();
 ?>
     
